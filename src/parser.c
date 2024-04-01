@@ -6,7 +6,7 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:47:27 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/04/01 17:44:31 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/04/01 17:59:26 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void parse_argment(char **arg, t_game_data *ptr)
 		}
 		free(line);
 	};
+	close(fd);
 }
 
 int is_map(char *line)

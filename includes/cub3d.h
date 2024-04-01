@@ -6,7 +6,7 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:32:55 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/04/01 17:44:16 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:04:32 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 #define ERR_OPEN "[ERROR] fail to open file\n"
 #define ERR_EMPTY_FILE "[ERROR] file is empty\n"
+#define ERR_EXTENSION "[ERROR] Wrong Extension file\n"
 #define ERR_MALLOC "[ERROR] malloc failled\n"
 #define ERR_CONFIG "[ERROR] Corrupted Config File\n"
 
