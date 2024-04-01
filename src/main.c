@@ -6,7 +6,7 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:32:01 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/04/01 18:40:01 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:56:33 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	main(int argc, char **argv)
 static void	exit_sucess(t_game_data *ptr)
 {
 	ft_array_clear(ptr->map);
-	free(ptr->NO_path);
-	free(ptr->SO_path);
-	free(ptr->WE_path);
-	free(ptr->EA_path);
+	free(ptr->no_path);
+	free(ptr->so_path);
+	free(ptr->we_path);
+	free(ptr->ea_path);
 	free(ptr->ceiling_color);
 	free(ptr->floor_color);
 	free(ptr);

@@ -6,7 +6,7 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:47:27 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/04/01 18:24:56 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:58:51 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_argment(char **arg, t_game_data *ptr)
 			break ;
 		if (is_texture_path(line) || is_color(line))
 			set_data(line, ptr);
-		if (is_map(line))
+		if (is_map(line) && (ft_strcmp(line, "\n") != 0))
 			fill_map(line, ptr);
 		if (!is_texture_path(line) && !is_color(line)
 			&& !is_map(line) && (ft_strcmp(line, "\n") != 0))
