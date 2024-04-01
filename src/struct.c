@@ -6,13 +6,13 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 12:49:46 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/04/01 15:48:32 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:28:57 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-t_game_data *init_struct(t_game_data *ptr)
+t_game_data	*init_struct(t_game_data *ptr)
 {
 	ptr = malloc(sizeof(t_game_data));
 	if (!ptr)
@@ -27,10 +27,10 @@ t_game_data *init_struct(t_game_data *ptr)
 	return (ptr);
 }
 
-void print_struct(t_game_data *ptr)
+void	print_struct(t_game_data *ptr)
 {
 	if (!ptr)
-		return;
+		return ;
 	ft_printf("[DEBUG]\n");
 	ft_printf("[DEBUG] MAP:\n");
 	ft_array_print(ptr->map);

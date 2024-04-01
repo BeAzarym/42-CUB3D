@@ -6,20 +6,20 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 13:56:11 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/04/01 17:23:28 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/04/01 18:17:26 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void set_data(char *arg, t_game_data *ptr)
+void	set_data(char *arg, t_game_data *ptr)
 {
-	if (!arg)
-		return;
-	char **buffer;
+	char	**buffer;
 
+	if (!arg)
+		return ;
 	if (ft_strcmp(arg, "\n") == 0)
-		return;
+		return ;
 	buffer = ft_split(arg, ' ');
 	if (!buffer)
 		return (ft_error(ptr, ERR_MALLOC));
@@ -29,8 +29,3 @@ void set_data(char *arg, t_game_data *ptr)
 		fill_color(buffer, ptr);
 	ft_array_clear(buffer);
 }
-
-// int is_map(char *map)
-// {
-
-// }
