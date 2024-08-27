@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   is_valid_charset.c                                 :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/07 00:17:46 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/09 11:20:30 by cchabeau         ###   ########.fr       */
+/*   Created: 2024/08/06 18:54:23 by cchabeau          #+#    #+#             */
+/*   Updated: 2024/08/27 13:59:34 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-int	is_valid_charset(char c, char *charset)
+int	main(int argc, char **argv)
 {
-	if (!charset)
-		return (-1);
-	while (*charset)
-	{
-		if (c == *charset)
-			return (TRUE);
-		charset++;
-	}
-	return (FALSE);
-}
+	t_cub	*cub;
 
-int	is_only_digit(char *s)
-{
-	int	i;
-
-	if (!s)
-		return (FALSE);
-	i = 0;
-	while (s[i])
-	{
-		if ((ft_isdigit(s[i]) == FALSE) && (s[i] != '+' && s[i] != '-'))
-			return (FALSE);
-		i++;
-	}
-	return (TRUE);
+	cub = NULL;
+	if (arg_parser(argc, argv) != SUCCESS)
+		return (FAIL);
+	cub = struct_initialization(cub, argv[1]);
+	if (!cub)
+		return (FAIL);
+	if (parser(cub) != SUCCESS)
+		clean_exit(cub, FAIL);
+	// start to render
+	clean_exit(cub, SUCCESS);
 }
