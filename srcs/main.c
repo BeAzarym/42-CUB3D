@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 18:54:23 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/27 13:59:34 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:11:30 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+
+
+int	render(t_cub *cub)
+{
+
+}
 
 int	main(int argc, char **argv)
 {
@@ -24,6 +31,9 @@ int	main(int argc, char **argv)
 		return (FAIL);
 	if (parser(cub) != SUCCESS)
 		clean_exit(cub, FAIL);
-	// start to render
+	mlx_loop_hook(cub->mlx->mlx, render, cub);
+	mlx_key_hook(cub->mlx->win, 2, (1L<<0), cub);
+	mlx_key_hook(cub->mlx->win, 3, (1L<<1), cub);
+	mlx_loop(cub->mlx->mlx);
 	clean_exit(cub, SUCCESS);
 }

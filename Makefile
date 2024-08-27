@@ -59,6 +59,7 @@ SRC = main.c \
 		utils/is_valid_pos.c \
 		debug/debug_file_input.c \
 		debug/key_detector.c \
+		raycasting/raycast.c \
 
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRC))

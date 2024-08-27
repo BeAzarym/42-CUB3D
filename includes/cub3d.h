@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/27 13:59:09 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/27 15:20:55 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,22 +176,27 @@ typedef struct s_mlx
 	char	*address;
 }	t_mlx;
 
+typedef	struct s_keys
+{
+	int			forward;
+	int			back;
+	int			left;
+	int			right;
+	int			rotate_left;
+	int			rotate_right;
+} t_keys;
+
 typedef struct s_cub
 {
 	t_mlx		*mlx;
 	t_data		*data;
 	t_raycast	*ray;
 	t_img		*img;
+	t_keys		*key;
 	char		**map;
 	int			map_width;
 	int			map_height;
 	int			infile_fd;
-	int			forward_key;
-	int			back_key;
-	int			left_key;
-	int			right_key;
-	int			rotate_left_key;
-	int			rotate_right_key;
 }	t_cub;
 
 /*
