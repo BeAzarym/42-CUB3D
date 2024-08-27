@@ -6,7 +6,7 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:15:42 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/20 14:45:24 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/27 16:32:18 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ t_cub	*struct_initialization(t_cub *cub, char *path)
 	cub->mlx = init_mlx(cub->mlx);
 	cub->data = init_data(cub->data);
 	cub->img = init_img(cub->img);
-	if (!cub->ray || !cub->mlx || !cub->data || !cub->img)
+	cub->key = init_keys(cub->key);
+	if (!cub->ray || !cub->mlx || !cub->data || !cub->img || !cub->key)
 	{
 		ft_error(ERR_MALLOC_FAILLED, FAIL);
 		clean_exit(cub, FAIL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/27 15:20:55 by bschor           ###   ########.fr       */
+/*   Updated: 2024/08/27 17:01:32 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,16 +104,6 @@ enum e_char
 	SOUTH = 83,
 	WEST = 87,
 	EAST = 69
-};
-
-enum e_keys
-{
-	W_KEY = 1,
-	S_KEY = 2,
-	A_KEY = 3,
-	D_KEY = 4,
-	L_KEY = 5,
-	R_KEY = 6
 };
 
 typedef struct s_img
@@ -223,6 +213,7 @@ int		ft_red_cross(t_cub *cub, int code);
 int		extension_parser(char *path, char *extension);
 int		arg_parser(int argc, char **argv);
 t_cub	*struct_initialization(t_cub *cub, char *path);
+t_keys	*init_keys(t_keys *keys);
 int		parser(t_cub *cub);
 void	clean_exit(t_cub *cub, int return_value);
 int		parse_data_file(t_data *data, char *input);
