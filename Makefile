@@ -22,9 +22,6 @@ MLX_DIR = $(OSDIR)
 INC = cub3d.h
 
 SRC = main.c \
-		game/ft_load_texture.c \
-		game/ft_start_game.c \
-		game/move.c \
 		hooks/ft_key_pressed.c \
 		hooks/ft_red_cross.c \
 		parsing/arg_parser.c \
@@ -36,10 +33,6 @@ SRC = main.c \
 		parsing/parse_map.c \
 		parsing/parse_player.c \
 		parsing/fill_assets.c \
-		raycast/ft_compute_dda.c \
-		raycast/ft_compute_wall_dist.c \
-		raycast/ft_draw_texture.c \
-		raycast/ft_render.c \
 		utils/ft_access.c \
 		utils/ft_array_clear.c \
 		utils/ft_array_add_back.c \
