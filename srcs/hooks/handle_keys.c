@@ -1,49 +1,55 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_key_pressed.c                                   :+:      :+:    :+:   */
+/*   handle_keys.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:55:46 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/20 14:44:50 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:22:33 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	ft_key_pressed(int key_code, t_cub *cub)
+int	key_press(int key_code, t_cub *cub)
 {
 	if (key_code == ESC)
 		clean_exit(cub, SUCCESS);
 	if (key_code == W || key_code == Z)
-		cub->forward_key = TRUE;
+		cub->key->forward = TRUE;
 	if (key_code == S)
-		cub->back_key = TRUE;
+		cub->key->back = TRUE;
 	if (key_code == A || key_code == Q)
-		cub->left_key = TRUE;
+		cub->key->left = TRUE;
 	if (key_code == D)
-		cub->right_key = TRUE;
+		cub->key->right = TRUE;
 	if (key_code == LEFT_ARROW)
-		cub->rotate_left_key = TRUE;
+		cub->key->rotate_left = TRUE;
 	if (key_code == RIGHT_ARROW)
-		cub->rotate_right_key = TRUE;
+		cub->key->rotate_right = TRUE;
 	return (0);
 }
 
-int	key_relase(int key_code, t_cub *cub)
+int	key_release(int key_code, t_cub *cub)
 {
 	if (key_code == W || key_code == Z)
-		cub->forward_key = FALSE;
+		cub->key->forward = FALSE;
 	if (key_code == S)
-		cub->back_key = FALSE;
+		cub->key->back = FALSE;
 	if (key_code == A || key_code == Q)
-		cub->left_key = FALSE;
+		cub->key->left = FALSE;
 	if (key_code == D)
-		cub->right_key = FALSE;
+		cub->key->right = FALSE;
 	if (key_code == LEFT_ARROW)
-		cub->rotate_left_key = FALSE;
+		cub->key->rotate_left = FALSE;
 	if (key_code == RIGHT_ARROW)
-		cub->rotate_right_key = FALSE;
+		cub->key->rotate_right = FALSE;
 	return (0);
+}
+
+int	ft_red_cross(t_cub *cub, int code)
+{
+	clean_exit(cub, code);
+	return (SUCCESS);
 }

@@ -4,7 +4,7 @@ NAME = cub3d
 
 RM = rm -rf
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -O3 -ffast-math
+CFLAGS = -Wall -Werror -Wextra -O3 -ffast-math -fsanitize=address -g
 
 SRCS_DIR = srcs
 INC_DIR = includes
@@ -22,8 +22,7 @@ MLX_DIR = $(OSDIR)
 INC = cub3d.h
 
 SRC = main.c \
-		hooks/ft_key_pressed.c \
-		hooks/ft_red_cross.c \
+		hooks/handle_keys.c \
 		parsing/arg_parser.c \
 		parsing/extension_parser.c \
 		parsing/structure_initialization.c \
@@ -58,9 +57,11 @@ SRC = main.c \
 		utils/is_valid_charset.c \
 		utils/ft_isdigit.c \
 		utils/is_valid_pos.c \
+		utils/bresenham.c \
 		debug/debug_file_input.c \
 		debug/key_detector.c \
 		raycasting/raycast.c \
+		raycasting/handle_player.c \
 
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRC))

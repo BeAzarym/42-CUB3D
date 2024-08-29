@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:38:35 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/20 20:29:44 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/28 16:53:03 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static void	free_img_struct(t_mlx *mlx, t_img *img)
 	i = 0;
 	while (i < 4)
 	{
-		if (img[i].img_ptr)
-			mlx_destroy_image(mlx->mlx, img[i].img_ptr);
+		if (img[i].ptr)
+			mlx_destroy_image(mlx->mlx, img[i].ptr);
 		i++;
 	}
 	free(img);

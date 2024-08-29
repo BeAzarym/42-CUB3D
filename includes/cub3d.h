@@ -6,7 +6,11 @@
 /*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2024/08/29 11:26:24 by bschor           ###   ########.fr       */
+=======
 /*   Updated: 2024/08/27 17:01:32 by cchabeau         ###   ########.fr       */
+>>>>>>> 56d299c48b1a87965d839bd8675f70fafd8b3eb6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +24,8 @@
 # include "unistd.h"
 # include "fcntl.h"
 # include "math.h"
-# include <X11/X.h>
-# include <X11/keysym.h>
+// # include <X11/X.h>
+// # include <X11/keysym.h>
 
 # define ERR_MALLOC_FAILLED "Error\nMalloc failled\n"
 # define ERR_OPEN_FAILLED "Error\nFailled to open the map\n"
@@ -73,6 +77,18 @@
 #  define WIDTH 1280
 # endif
 
+# ifndef HIGHT
+#  define HIGHT 1280
+# endif
+
+# ifndef MOVE_SPEED
+#  define MOVE_SPEED 5
+# endif
+
+# ifndef ROT_SPEED
+#  define ROT_SPEED 3
+# endif
+
 # ifndef HEIGHT
 #  define HEIGHT 960
 # endif
@@ -93,6 +109,10 @@
 #  define A 0
 #  define S 1
 #  define D 2
+#  define Z 6
+#  define Q 12
+#  define LEFT_ARROW 123
+#  define RIGHT_ARROW 124
 # endif
 
 enum e_char
@@ -108,8 +128,8 @@ enum e_char
 
 typedef struct s_img
 {
-	void	*img_ptr;
-	char	*img_data;
+	void	*ptr;
+	char	*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -190,6 +210,14 @@ typedef struct s_cub
 }	t_cub;
 
 /*
+ *	RAYCASTING
+*/
+
+void	raycast(t_cub *cub);
+void	move_player(t_cub *cub);
+void	turn_player(t_cub *cub);
+
+/*
  *	DEBUG
  */
 
@@ -202,8 +230,8 @@ int		detect_key_code(int keycode, t_mlx *mlx);
  *	HOOKS
  */
 
-int		ft_key_pressed(int key_code, t_cub *cub);
-int		key_relase(int key_code, t_cub *cub);
+int		key_press(int key_code, t_cub *cub);
+int		key_release(int key_code, t_cub *cub);
 int		ft_red_cross(t_cub *cub, int code);
 
 /*
@@ -240,7 +268,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*get_next_line(int fd);
-void	ft_put_pixel_on_img(t_mlx *mlx, int x, int y, int color);
+void	ft_put_pixel_on_img(t_img *img, int x, int y, int color);
 size_t	ft_strlen(const char *s);
 int		ft_error(char *err, int return_value);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -251,4 +279,5 @@ int		is_valid_charset(char c, char *charset);
 int		is_only_digit(char *s);
 int		ft_isdigit(int c);
 int		is_valid_pos(int x, int y, t_cub *cub);
+void	ft_put_line(t_cub *cub, int p0[2], int p1[2], int color);
 #endif
