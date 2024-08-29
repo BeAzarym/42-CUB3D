@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:18 by bschor            #+#    #+#             */
-/*   Updated: 2024/08/29 14:03:37 by bschor           ###   ########.fr       */
+/*   Updated: 2024/08/29 14:40:35 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	raycast(t_cub *cub)
 
 	while (x < WIDTH)
 	{	
-		cub->ray->camera_x = 2 * x / WIDTH - 1;
+		cub->ray->camera_x = 2 * x / (double)WIDTH - 1;
 		// printf("%lf + %lf * %lf\n", cub->ray->dir_x, cub->ray->plan_x, cub->ray->camera_x);
 		cub->ray->ray_x = cub->ray->dir_x + cub->ray->plan_x * cub->ray->camera_x;
 		cub->ray->ray_y = cub->ray->dir_y + cub->ray->plan_y * cub->ray->camera_x;
@@ -79,17 +79,26 @@ void	raycast(t_cub *cub)
 			cub->ray->wall_dist = cub->ray->side_dist_y - cub->ray->delta_y;
 
 		cub->ray->line_height = HEIGHT / cub->ray->wall_dist;
+		// int	y = (HEIGHT - cub->ray->line_height) / 2;
+		// int of = (HEIGHT - cub->ray->line_height) / 2;
+
+		// while (y < cub->ray->line_height + of)
+		// {
+		// 	ft_put_pixel_on_img(cub->mlx, x, y, 0x00FF0000);
+		// 	y++;
+		// }
 		int	start[2];
 		int	end[2];
 
 		start[0] = x;
 		start[1] = (HEIGHT - cub->ray->line_height) / 2;
 		end[0] = x;
-		end[1] = cub->ray->line_height + start[0];
-		// printf("put line %p: (%d, %d) - (%d, %d)\n", cub->mlx->address, start[0], start[1], end[0], end[1]);
+		end[1] = cub->ray->line_height + start[1];
+		// printf("(%d, %d) - (%d, %d)\n", start[0], start[1], end[0], end[1]);
 		ft_put_line(cub, start, end, 0x00FF00F0);
+		
+		
 		x++;
-
 	}
 }
 
