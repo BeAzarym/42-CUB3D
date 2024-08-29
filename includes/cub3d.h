@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/08/29 11:26:24 by bschor           ###   ########.fr       */
-=======
-/*   Updated: 2024/08/27 17:01:32 by cchabeau         ###   ########.fr       */
->>>>>>> 56d299c48b1a87965d839bd8675f70fafd8b3eb6
+/*   Updated: 2024/08/29 13:45:29 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -77,20 +74,16 @@
 #  define WIDTH 1280
 # endif
 
-# ifndef HIGHT
-#  define HIGHT 1280
+# ifndef HEIGHT
+#  define HEIGHT 1280
 # endif
 
 # ifndef MOVE_SPEED
-#  define MOVE_SPEED 5
+#  define MOVE_SPEED 0.05
 # endif
 
 # ifndef ROT_SPEED
-#  define ROT_SPEED 3
-# endif
-
-# ifndef HEIGHT
-#  define HEIGHT 960
+#  define ROT_SPEED 0.03
 # endif
 
 # ifdef __linux__
@@ -182,8 +175,11 @@ typedef struct s_mlx
 {
 	void	*mlx;
 	void	*win;
-	void	*img;
-	char	*address;
+	void	*img_ptr;
+	char	*img_addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
 }	t_mlx;
 
 typedef	struct s_keys
@@ -268,7 +264,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*get_next_line(int fd);
-void	ft_put_pixel_on_img(t_img *img, int x, int y, int color);
+void	ft_put_pixel_on_img(t_mlx *mlx, int x, int y, int color);
 size_t	ft_strlen(const char *s);
 int		ft_error(char *err, int return_value);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structure_initialization.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:15:42 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/27 16:32:18 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/29 13:48:07 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ static t_mlx	*init_mlx(t_mlx *mlx)
 		return (NULL);
 	mlx->mlx = NULL;
 	mlx->win = NULL;
-	mlx->img = NULL;
-	mlx->address = NULL;
+	mlx->img_ptr = NULL;
+	mlx->img_addr = 0;
+	mlx->bpp = 0;
+	mlx->size_line = 0;
+	mlx->endian = 0;
 	return (mlx);
 }
 

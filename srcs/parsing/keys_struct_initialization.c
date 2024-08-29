@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_struct_initialization.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:24:53 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/27 16:32:33 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/08/29 11:52:55 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_keys	*init_keys(t_keys *keys)
 {
-	keys = malloc(sizeof(t_keys *));
+	keys = malloc(sizeof(t_keys));
 	if (!keys)
 		return (NULL);
 	keys->forward = FALSE;

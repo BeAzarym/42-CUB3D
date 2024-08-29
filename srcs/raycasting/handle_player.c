@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:27:36 by bschor            #+#    #+#             */
-/*   Updated: 2024/08/28 16:12:43 by bschor           ###   ########.fr       */
+/*   Updated: 2024/08/29 13:49:59 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	move_player(t_cub *cub)
 {
 	if (cub->key->forward == TRUE)
 	{
+		printf("%d, %d\n", (int)(cub->ray->p_x + cub->ray->dir_x * MOVE_SPEED), (int)cub->ray->p_y);
 		if (cub->map[(int)(cub->ray->p_x + cub->ray->dir_x * MOVE_SPEED)][(int)cub->ray->p_y] == FLOOR)
 			cub->ray->p_x += cub->ray->dir_x * MOVE_SPEED;
 		if (cub->map[(int)(cub->ray->p_x)][(int)(cub->ray->p_y + cub->ray->dir_y * MOVE_SPEED)] == FLOOR)
