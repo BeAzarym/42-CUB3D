@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_player.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/22 11:24:11 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/22 12:21:42 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:22:42 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ int	parse_player(t_cub *cub)
 	unsigned int	y;
 
 	y = 0;
-	while (cub->map[y])
+	while (cub->map->grid[y])
 	{
 		x = 0;
-		while (cub->map[y][x])
+		while (cub->map->grid[y][x])
 		{
-			if (is_valid_charset(cub->map[y][x], "NSEW") == TRUE)
+			if (is_valid_charset(cub->map->grid[y][x], "NSEW") == TRUE)
 			{
 				if (cub->ray->p_x != -1 || cub->ray->p_y != -1)
 					return (ft_error(ERR_MULTIPLE_PLAYER, FAIL));
@@ -42,19 +42,19 @@ int	parse_player(t_cub *cub)
 
 static void	fill_dir(t_cub *cub, int x, int y)
 {
-	if (cub->map[y][x] == 'N')
+	if (cub->map->grid[y][x] == 'N')
 	{
 		cub->ray->dir_y = -1;
 		cub->ray->dir_x = 0;
 		cub->ray->plan_x = 0.66;
 	}
-	else if (cub->map[y][x] == 'S')
+	else if (cub->map->grid[y][x] == 'S')
 	{
 		cub->ray->dir_y = 1;
 		cub->ray->dir_x = 0;
 		cub->ray->plan_x = -0.66;
 	}
-	else if (cub->map[y][x] == 'E')
+	else if (cub->map->grid[y][x] == 'E')
 	{
 		cub->ray->dir_y = 0;
 		cub->ray->dir_x = 1;

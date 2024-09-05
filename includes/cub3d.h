@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 12:46:58 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:28:21 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,24 +75,36 @@
 #  define BUFFER_SIZE 42
 # endif
 
-# ifndef WINWIDTH
-#  define WINWIDTH 2000
+# ifndef WIDTH
+#  define WIDTH 2000
 # endif
 
 # ifndef HALFWIDTH
-#  define HALFWIDTH (WINWIDTH)
+#  define HALFWIDTH (WIDTH)
 # endif
 
 # ifndef HEIGHT
 #  define HEIGHT 1000
 # endif
 
+# ifndef MAPWIDTH
+#  define MAPWIDTH (WIDTH / 2)
+# endif
+
+# ifndef HEIGHT
+#  define HEIGHT 1000
+# endif
+
+# ifndef MAPHEIGHT
+#  define MAPHEIGHT (HEIGHT / 2)
+# endif
+
 # ifndef MOVE_SPEED
 #  define MOVE_SPEED 0.05
 # endif
 
-# ifndef ROT_SPEED
-#  define ROT_SPEED 0.03
+# ifndef ROT
+#  define ROT 0.03
 # endif
 
 # ifdef __linux__
@@ -149,6 +161,15 @@ typedef struct s_data
 	int		floor;
 	int		ceiling;
 }	t_data;
+
+typedef struct s_map
+{
+	char		**grid;
+	int			width;
+	int			height;
+	int			blocksize;
+	int			offset;
+} t_map;
 
 typedef struct s_raycasting
 {
@@ -208,9 +229,7 @@ typedef struct s_cub
 	t_raycast	*ray;
 	t_img		*img;
 	t_keys		*key;
-	char		**map;
-	int			map_width;
-	int			map_height;
+	t_map		*map;
 	int			infile_fd;
 }	t_cub;
 
@@ -220,13 +239,17 @@ typedef struct s_cub
 
 void	raycast(t_cub *cub);
 void	move_player(t_cub *cub);
-void	turn_player(t_cub *cub);
+void	turn_player(t_cub *cub, t_raycast *ray);
 void	draw_texture(t_cub *cub, int x);
 void	decide_wall(t_cub *cub);
 void	draw_map(t_cub *cub);
 void	move_x_axe(t_cub *cub, int x);
 void	move_y_axe(t_cub *cub, int x);
 void	set_background(t_cub *cub);
+void 	compute_dda(t_cub *cub);
+void 	compute_wall_dist(t_cub *cub);
+
+
 
 /*
  *	DEBUG
@@ -253,6 +276,7 @@ int		extension_parser(char *path, char *extension);
 int		arg_parser(int argc, char **argv);
 t_cub	*struct_initialization(t_cub *cub, char *path);
 t_keys	*init_keys(t_keys *keys);
+t_map	*init_map(t_map *map);
 int		parser(t_cub *cub);
 void	clean_exit(t_cub *cub, int return_value);
 int		parse_data_file(t_data *data, char *input);

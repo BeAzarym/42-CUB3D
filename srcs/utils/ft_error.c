@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:38:35 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 10:55:32 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:29:39 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,10 @@ void	clean_exit(t_cub *cub, int return_value)
 		if (cub->mlx)
 			free_mlx_struct(cub->mlx);
 		if (cub->map)
-			ft_array_clear(cub->map);
+		{
+			ft_array_clear(cub->map->grid);
+			free(cub->map);
+		}
 		close(cub->infile_fd);
 		free(cub);
 	}

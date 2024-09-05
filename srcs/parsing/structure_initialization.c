@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   structure_initialization.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:15:42 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 10:53:52 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:25:02 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../includes/cub3d.h"
 #include "../../includes/cub3d.h"
 
 static t_raycast	*init_raycast(t_raycast *ray);
@@ -25,7 +26,6 @@ t_cub	*struct_initialization(t_cub *cub, char *path)
 		ft_error(ERR_MALLOC_FAILLED, FAIL);
 		return (NULL);
 	}
-	cub->map = NULL;
 	cub->infile_fd = open(path, O_RDONLY);
 	if (cub->infile_fd == -1)
 	{
@@ -38,7 +38,8 @@ t_cub	*struct_initialization(t_cub *cub, char *path)
 	cub->data = init_data(cub->data);
 	cub->img = init_img(cub->img);
 	cub->key = init_keys(cub->key);
-	if (!cub->ray || !cub->mlx || !cub->data || !cub->img || !cub->key)
+	cub->map = init_map(cub->map);
+	if (!cub->ray || !cub->mlx || !cub->data || !cub->img || !cub->key || !cub->map)
 	{
 		ft_error(ERR_MALLOC_FAILLED, FAIL);
 		clean_exit(cub, FAIL);

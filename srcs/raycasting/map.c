@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:47:49 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 12:53:40 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:26:31 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_put_square(t_img *img, int startx, int starty, int size, int color)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	while (i < size)
@@ -32,23 +32,24 @@ void	ft_put_square(t_img *img, int startx, int starty, int size, int color)
 
 void	draw_map(t_cub *cub)
 {
-	int	i;
-	int	j;
-	int	blocksize;
-	int	offset[2];
+	int i;
+	int j;
+	
 
-	if (cub->map_height > cub->map_width)
-		blocksize = HEIGHT / cub->map_height;
+	if (cub->map->height > cub->map->width)
+		cub->map->blocksize = MAPHEIGHT / cub->map->height;
 	else
-		blocksize = HALFWIDTH / cub->map_width;
-	offset[0] = (HALFWIDTH - blocksize * (cub->map_width - 1)) / 2;
-	offset[1] = (HEIGHT - blocksize * (cub->map_height)) / 2;
+		cub->map->blocksize = MAPWIDTH / cub->map->width;
+	if (WIDTH < HEIGHT)
+		cub->map->offset = HEIGHT / 25;
+	else
+		cub->map->offset = WIDTH / 25;
 
 	i = 0;
 	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < WINWIDTH)
+		while (j < WIDTH)
 		{
 			ft_put_pixel_on_img(cub->mlx->map, j, i, 0xFF000000);
 			j++;
@@ -57,21 +58,26 @@ void	draw_map(t_cub *cub)
 	}
 
 	i = 0;
-	while (i < cub->map_height)
+	while (i < cub->map->height)
 	{
 		j = 0;
-		while (j < cub->map_width - 1)
+		while (j < cub->map->width - 1)
 		{
-			if (cub->map[i][j] == WALL)
-				ft_put_square(cub->mlx->map, blocksize * j + offset[0], blocksize * i + offset[1], blocksize - 2, 0x90007EFF);
-			else if (cub->map[i][j] == FLOOR)
-				ft_put_square(cub->mlx->map, blocksize * j + offset[0], blocksize * i + offset[1], blocksize - 2, 0x90FFFFFF);
-			else if (cub->map[i][j] == SOUTH || cub->map[i][j] == NORTH || cub->map[i][j] == EAST || cub->map[i][j] == WEST)
-				ft_put_square(cub->mlx->map, blocksize * j + offset[0], blocksize * i + offset[1], blocksize - 2, 0x90ECC8E5);
+			if (cub->map->grid[i][j] == WALL)
+				ft_put_square(cub->mlx->map, cub->map->blocksize * j + cub->map->offset, cub->map->blocksize
+						* i + cub->map->offset, cub->map->blocksize, 0x90007EFF);
+			else if (cub->map->grid[i][j] == FLOOR)
+				ft_put_square(cub->mlx->map, cub->map->blocksize * j + cub->map->offset, cub->map->blocksize
+						* i + cub->map->offset, cub->map->blocksize, 0x90FFFFFF);
+			else if (cub->map->grid[i][j] == SOUTH || cub->map->grid[i][j] == NORTH
+					|| cub->map->grid[i][j] == EAST || cub->map->grid[i][j] == WEST)
+				ft_put_square(cub->mlx->map, cub->map->blocksize * j + cub->map->offset, cub->map->blocksize
+						* i + cub->map->offset, cub->map->blocksize, 0x90ECC8E5);
 			j++;
 		}
 		i++;
 	}
-	ft_put_square(cub->mlx->map, cub->ray->p_x * blocksize + offset[0] - blocksize / 4, cub->ray->p_y * blocksize + offset[1]  - blocksize / 4, blocksize / 2, 0x90FF00FF);
-	
+	ft_put_square(cub->mlx->map, cub->ray->p_x * cub->map->blocksize + cub->map->offset - cub->map->blocksize
+			/ 4, cub->ray->p_y * cub->map->blocksize + cub->map->offset - cub->map->blocksize / 4, cub->map->blocksize
+			/ 2, 0x90FF00FF);
 }

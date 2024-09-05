@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 18:54:23 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 12:53:01 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:28:56 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void handle_move(t_cub * cub)
 		move_y_axe(cub, 1);
 	if (cub->key->left)
 		move_y_axe(cub, -1);
-	turn_player(cub);
+	turn_player(cub, cub->ray);
 }
 
 int	render(t_cub *cub)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:54:13 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 12:29:07 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 14:26:11 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,26 @@ void	draw_texture(t_cub *cub, int x)
 	
 	int	p0[2];
 	int	p1[2];
-	int	blocksize;
-	int	offset[2];
 
-	if (cub->map_height > cub->map_width)
-		blocksize = HEIGHT / cub->map_height;
+	if (cub->map->height > cub->map->width)
+		cub->map->blocksize = MAPHEIGHT / cub->map->height;
 	else
-		blocksize = HALFWIDTH / cub->map_width;
-	offset[0] = (HALFWIDTH - blocksize * (cub->map_width - 1)) / 2;
-	offset[1] = (HEIGHT - blocksize * (cub->map_height)) / 2;
-	p0[0] = blocksize * (cub->ray->p_x) + offset[0];
-	p0[1] = blocksize * (cub->ray->p_y) + offset[1];
+		cub->map->blocksize = MAPWIDTH / cub->map->width;
+	if (WIDTH < HEIGHT)
+		cub->map->offset = HEIGHT / 25;
+	else
+		cub->map->offset = WIDTH / 25;
+	p0[0] = cub->map->blocksize * (cub->ray->p_x) + cub->map->offset;
+	p0[1] = cub->map->blocksize * (cub->ray->p_y) + cub->map->offset;
 	if (cub->ray->side == 0)
 	{
-		p1[0] = blocksize * (cub->ray->p_x + cub->ray->wall_dist * cub->ray->ray_x) + offset[0];
-		p1[1] = blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + offset[1];
+		p1[0] = cub->map->blocksize * (cub->ray->p_x + cub->ray->wall_dist * cub->ray->ray_x) + cub->map->offset;
+		p1[1] = cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + cub->map->offset;
 	}
 	else
 	{
-		p1[0] = blocksize * (cub->ray->p_x + cub->ray->wall_dist * cub->ray->ray_x) + offset[0];
-		p1[1] =  blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + offset[1];
+		p1[0] = cub->map->blocksize * (cub->ray->p_x + cub->ray->wall_dist * cub->ray->ray_x) + cub->map->offset;
+		p1[1] =  cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + cub->map->offset;
 	}
 	ft_put_line(cub->mlx->map, p0, p1, 0x90FF0000);
 	

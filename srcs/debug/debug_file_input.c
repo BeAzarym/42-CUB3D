@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   debug_file_input.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 15:59:52 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/20 14:46:20 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:25:40 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../../includes/cub3d.h"
 
 #include "../../includes/cub3d.h"
 
@@ -22,7 +24,7 @@ void	debug_file_input(t_cub *cub)
 	printf("[C]  >> %d <<\n", cub->data->ceiling);
 	printf("[F]  >> %d <<\n", cub->data->floor);
 	printf("	 [MAP]\n");
-	ft_array_print(cub->map);
+	ft_array_print(cub->map->grid);
 	printf("	 [PLAYER]\n");
 	printf("[X]  >>%f  <<\n", cub->ray->p_x);
 	printf("[y]  >>%f  <<\n", cub->ray->p_y);

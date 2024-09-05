@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:47:01 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/20 20:33:05 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:24:22 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ int	parser(t_cub *cub)
 			return (FAIL);
 		}
 		free(input);
-		if (cub->map)
+		if (cub->map->grid)
 			in_map = TRUE;
 	}
-	if (!cub->map)
+	if (!cub->map->grid)
 		return (ft_error(ERR_MISSING_MAP, FAIL));
 	if (parse_map(cub) == FAIL)
 		return (FAIL);
@@ -88,6 +88,6 @@ static int	fill_map(t_cub *cub, char *input)
 {
 	if (is_map(input) == FALSE)
 		return (ft_error(ERR_INVALID_CHARSET_IN_MAP, FAIL));
-	cub->map = array_add_back(cub->map, input);
+	cub->map->grid = array_add_back(cub->map->grid, input);
 	return (SUCCESS);
 }
