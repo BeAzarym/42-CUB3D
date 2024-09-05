@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 18:30:07 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:25:17 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@
 # include "unistd.h"
 # include "fcntl.h"
 # include "math.h"
-/*
-linux compile
+
 # include <X11/X.h>
 # include <X11/keysym.h>
-*/
+
 
 # define ERR_MALLOC_FAILLED "Error\nMalloc failled\n"
 # define ERR_OPEN_FAILLED "Error\nFailled to open the map\n"
@@ -116,8 +115,11 @@ linux compile
 #  define A 97
 #  define S 115
 #  define D 100
+#  define M 109
 #  define LEFT_ARROW 65361
 #  define RIGHT_ARROW 65363
+#  define UP 65362
+#  define DOWN 65364
 # elif __APPLE__
 #  define ESC 53
 #  define W 13

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 18:41:42 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 20:25:56 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,11 @@ linux compile
 #  define A 97
 #  define S 115
 #  define D 100
+#  define M 109
 #  define LEFT_ARROW 65361
 #  define RIGHT_ARROW 65363
+#  define UP 65362
+#  define DOWN 65364
 # elif __APPLE__
 #  define ESC 53
 #  define W 13
