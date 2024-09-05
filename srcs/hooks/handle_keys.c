@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:55:46 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 14:43:56 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 15:54:19 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	key_press(int key_code, t_cub *cub)
 	if (key_code == UP)
 		cub->key->map = TRUE;
 	if (key_code == DOWN)
-		cub->key->map= FALSE;
+		cub->key->map = FALSE;
 	if (key_code == M)
 		cub->key->big_map = TRUE;
 	return (0);

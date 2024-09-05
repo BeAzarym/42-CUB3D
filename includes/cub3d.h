@@ -6,10 +6,9 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 15:28:05 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 16:05:19 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -21,8 +20,11 @@
 # include "unistd.h"
 # include "fcntl.h"
 # include "math.h"
-// # include <X11/X.h>
-// # include <X11/keysym.h>
+/*
+linux compile
+# include <X11/X.h>
+# include <X11/keysym.h>
+*/
 
 # define ERR_MALLOC_FAILLED "Error\nMalloc failled\n"
 # define ERR_OPEN_FAILLED "Error\nFailled to open the map\n"
@@ -56,7 +58,10 @@
 # define ERR_FAIL_TO_LOAD_SOUTH "Error\nFail to load south img\n"
 # define ERR_FAIL_TO_LOAD_EAST "Error\nFail to load east img\n"
 # define ERR_FAIL_TO_LOAD_WEST "Error\nFail to load west img\n"
-# define ERR_MAP_ISNT_CLOSED "Error\nMap is not closed"
+# define ERR_MAP_ISNT_CLOSED "Error\nMap is not closed\n"
+# define ERR_FAIL_TO_CREATE_IMG "Error\nFail to create new mlx img\n"
+# define ERR_FAIL_TO_INIT_MLX "Error\nFail to init mlx\n"
+# define ERR_FAIL_TO_CREATE_WINDOW "Error\nFail to create new mlx window\n"
 
 # define TRUE 1
 # define FALSE 0
@@ -84,11 +89,11 @@
 # endif
 
 # ifndef MAPWIDTH
-#  define MAPWIDTH (WIDTH / 2)
+#  define MAPWIDTH 640
 # endif
 
 # ifndef MAPHEIGHT
-#  define MAPHEIGHT (HEIGHT / 2)
+#  define MAPHEIGHT 360
 # endif
 
 # ifndef MOVE_SPEED
@@ -165,7 +170,7 @@ typedef struct s_map
 	int			blocksize;
 	int			offset;
 	int			offset2;
-} t_map;
+}	t_map;
 
 typedef struct s_raycasting
 {
@@ -208,7 +213,7 @@ typedef struct s_mlx
 	t_img	*map;
 }	t_mlx;
 
-typedef	struct s_keys
+typedef struct s_keys
 {
 	int			forward;
 	int			back;
@@ -218,7 +223,7 @@ typedef	struct s_keys
 	int			rotate_right;
 	int			map;
 	int			big_map;
-} t_keys;
+}	t_keys;
 
 typedef struct s_cub
 {
@@ -244,23 +249,20 @@ void	draw_map(t_cub *cub);
 void	move_x_axe(t_cub *cub, int x);
 void	move_y_axe(t_cub *cub, int x);
 void	set_background(t_cub *cub);
-void 	compute_dda(t_cub *cub);
-void 	compute_wall_dist(t_cub *cub);
-
-
+void	compute_dda(t_cub *cub);
+void	compute_wall_dist(t_cub *cub);
 
 /*
  *	DEBUG
- */
+*/
 
 void	debug_file_input(t_cub *cub);
 void	debug_raycast(t_cub *cub);
 int		detect_key_code(int keycode, t_mlx *mlx);
 
-
 /*
  *	HOOKS
- */
+*/
 
 int		key_press(int key_code, t_cub *cub);
 int		key_release(int key_code, t_cub *cub);
@@ -268,7 +270,7 @@ int		ft_red_cross(t_cub *cub, int code);
 
 /*
  *	PARSING
- */
+*/
 
 int		extension_parser(char *path, char *extension);
 int		arg_parser(int argc, char **argv);
