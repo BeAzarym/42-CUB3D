@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 16:05:19 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 18:30:07 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ linux compile
 # define SO 1
 # define EA 2
 # define WE 3
+
+# define XBLU 0x90007EFF
+# define XWHIT 0x90FFFFFF
+# define XPINK 0x90ECC8E5
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
