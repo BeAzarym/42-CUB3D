@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_assets.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/07 16:50:41 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/09 10:48:39 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:40:33 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ static int	fill_east_assets(t_data *data, char **buffer)
 		{
 			ft_array_clear(buffer);
 			return (ft_error(ERR_MALLOC_FAILLED, FAIL));
-		}	
+		}
 		ft_array_clear(buffer);
 		return (SUCCESS);
 	}
