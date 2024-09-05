@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:27:36 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 12:30:39 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:42:27 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	move_x_axe(t_cub *cub, int x)
 	}
 }
 
- void	move_y_axe(t_cub *cub, int x)
+void	move_y_axe(t_cub *cub, int x)
 {
 	int	new_x;
 	int	new_y;

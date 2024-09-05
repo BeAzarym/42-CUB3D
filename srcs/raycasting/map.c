@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:47:49 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 12:19:03 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:53:40 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ void	draw_map(t_cub *cub)
 	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < HALFWIDTH)
+		while (j < WINWIDTH)
 		{
-			ft_put_pixel_on_img(cub->mlx->map, i, j, 0xFF000000);
+			ft_put_pixel_on_img(cub->mlx->map, j, i, 0xFF000000);
 			j++;
 		}
 		i++;

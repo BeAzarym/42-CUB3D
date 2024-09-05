@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:18 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 12:31:46 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:46:41 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	raycast(t_cub *cub)
 	int x = 0;
 
 	set_background(cub);
-	while (x < HALFWIDTH)
+	while (x < WINWIDTH)
 	{	
 		cub->ray->camera_x = 2 * x / (double)HALFWIDTH - 1;
 		// printf("%lf + %lf * %lf\n", cub->ray->dir_x, cub->ray->plan_x, cub->ray->camera_x);
