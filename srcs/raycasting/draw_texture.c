@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:54:13 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 14:26:11 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:44:12 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,6 @@ void	draw_texture(t_cub *cub, int x)
 	int	p0[2];
 	int	p1[2];
 
-	if (cub->map->height > cub->map->width)
-		cub->map->blocksize = MAPHEIGHT / cub->map->height;
-	else
-		cub->map->blocksize = MAPWIDTH / cub->map->width;
-	if (WIDTH < HEIGHT)
-		cub->map->offset = HEIGHT / 25;
-	else
-		cub->map->offset = WIDTH / 25;
 	p0[0] = cub->map->blocksize * (cub->ray->p_x) + cub->map->offset;
 	p0[1] = cub->map->blocksize * (cub->ray->p_y) + cub->map->offset;
 	if (cub->ray->side == 0)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 18:54:23 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 14:28:56 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:51:38 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static void handle_move(t_cub * cub)
 
 int	render(t_cub *cub)
 {
-	cub->mlx->raycast->ptr = mlx_new_image(cub->mlx->mlx, HALFWIDTH, HEIGHT);
+	cub->mlx->raycast->ptr = mlx_new_image(cub->mlx->mlx, WIDTH, HEIGHT);
 	cub->mlx->raycast->addr = mlx_get_data_addr(cub->mlx->raycast->ptr, &cub->mlx->raycast->bpp, &cub->mlx->raycast->size_line, &cub->mlx->raycast->endian);
-	cub->mlx->map->ptr = mlx_new_image(cub->mlx->mlx, HALFWIDTH, HEIGHT);
+	cub->mlx->map->ptr = mlx_new_image(cub->mlx->mlx, WIDTH, HEIGHT);
 	cub->mlx->map->addr = mlx_get_data_addr(cub->mlx->map->ptr, &cub->mlx->map->bpp, &cub->mlx->map->size_line, &cub->mlx->map->endian);
 	set_background(cub);
 	handle_move(cub);
@@ -37,7 +37,8 @@ int	render(t_cub *cub)
 	raycast(cub);
 	mlx_put_image_to_window(cub->mlx->mlx, cub->mlx->win, cub->mlx->raycast->ptr, 0, 0);
 	mlx_destroy_image(cub->mlx->mlx, cub->mlx->raycast->ptr);
-	mlx_put_image_to_window(cub->mlx->mlx, cub->mlx->win, cub->mlx->map->ptr, 0, 0);
+	if (cub->key->map == TRUE)
+		mlx_put_image_to_window(cub->mlx->mlx, cub->mlx->win, cub->mlx->map->ptr, 0, 0);
 	mlx_destroy_image(cub->mlx->mlx, cub->mlx->map->ptr);
 	cub->mlx->raycast->ptr = NULL;
 	cub->mlx->map->ptr = NULL;
@@ -69,7 +70,7 @@ int	main(int argc, char **argv)
 	if (parser(cub) != SUCCESS)
 		clean_exit(cub, FAIL);
 	cub->mlx->mlx = mlx_init();
-	cub->mlx->win = mlx_new_window(cub->mlx->mlx, HALFWIDTH, HEIGHT, "cub3d");
+	cub->mlx->win = mlx_new_window(cub->mlx->mlx, WIDTH, HEIGHT, "cub3d");
 	init_textures(cub);
 	mlx_hook(cub->mlx->win, 2, (1L<<0), key_press, cub);
 	mlx_hook(cub->mlx->win, 3, (1L<<1), key_release, cub);

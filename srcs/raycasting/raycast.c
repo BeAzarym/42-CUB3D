@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:18 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 14:33:50 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:51:39 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	init_value_raycast(t_cub *cub, int x)
 {
-	cub->ray->camera_x = 2 * x / (double)HALFWIDTH - 1;
+	cub->ray->camera_x = 2 * x / (double)WIDTH - 1;
 	cub->ray->ray_x = cub->ray->dir_x + cub->ray->plan_x * cub->ray->camera_x;
 	cub->ray->ray_y = cub->ray->dir_y + cub->ray->plan_y * cub->ray->camera_x;
 	cub->ray->map_x = (int)(cub->ray->p_x);
@@ -39,7 +39,7 @@ void	set_background(t_cub *cub)
 	while (i < HEIGHT)
 	{
 		j = 0;
-		while (j < HALFWIDTH)
+		while (j < WIDTH)
 		{
 			if (i < HEIGHT / 2)
 				ft_put_pixel_on_img(cub->mlx->raycast, j,

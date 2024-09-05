@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 14:28:21 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:52:19 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,15 @@
 # endif
 
 # ifndef WIDTH
-#  define WIDTH 2000
-# endif
-
-# ifndef HALFWIDTH
-#  define HALFWIDTH (WIDTH)
+#  define WIDTH 1280
 # endif
 
 # ifndef HEIGHT
-#  define HEIGHT 1000
+#  define HEIGHT 720
 # endif
 
 # ifndef MAPWIDTH
 #  define MAPWIDTH (WIDTH / 2)
-# endif
-
-# ifndef HEIGHT
-#  define HEIGHT 1000
 # endif
 
 # ifndef MAPHEIGHT
@@ -125,6 +117,9 @@
 #  define D 2
 #  define Z 6
 #  define Q 12
+#  define M 46
+#  define UP 126
+#  define DOWN 125
 #  define LEFT_ARROW 123
 #  define RIGHT_ARROW 124
 # endif
@@ -220,6 +215,8 @@ typedef	struct s_keys
 	int			right;
 	int			rotate_left;
 	int			rotate_right;
+	int			map;
+	int			big_map;
 } t_keys;
 
 typedef struct s_cub
