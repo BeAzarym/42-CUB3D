@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/31 17:47:49 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 14:26:31 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:08:10 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,9 @@ void	draw_map(t_cub *cub)
 	while (i < cub->map->height)
 	{
 		j = 0;
-		while (j < cub->map->width - 1)
+		while (j < (int)ft_strlen(cub->map->grid[i]))
 		{
+			printf("%d, %d, %d, %d\n" , j, i, cub->map->width, cub->map->height);
 			if (cub->map->grid[i][j] == WALL)
 				ft_put_square(cub->mlx->map, cub->map->blocksize * j + cub->map->offset, cub->map->blocksize
 						* i + cub->map->offset, cub->map->blocksize, 0x90007EFF);
