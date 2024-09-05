@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:15:42 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/29 13:48:07 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 10:53:52 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,12 @@ static t_mlx	*init_mlx(t_mlx *mlx)
 		return (NULL);
 	mlx->mlx = NULL;
 	mlx->win = NULL;
-	mlx->img_ptr = NULL;
-	mlx->img_addr = 0;
-	mlx->bpp = 0;
-	mlx->size_line = 0;
-	mlx->endian = 0;
+	mlx->raycast = ft_calloc(sizeof(t_img), 1);
+	if (!mlx->raycast)
+		return (NULL);
+	mlx->map = ft_calloc(sizeof(t_img), 1);
+	if (!mlx->map)
+		return (NULL);
 	return (mlx);
 }
 

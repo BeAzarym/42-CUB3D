@@ -6,19 +6,41 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:44:18 by bschor            #+#    #+#             */
-/*   Updated: 2024/08/29 14:40:35 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:31:46 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+void	set_background(t_cub *cub)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < HEIGHT)
+	{
+		j = 0;
+		while (j < HALFWIDTH)
+		{
+			if (i < HEIGHT / 2)
+				ft_put_pixel_on_img(cub->mlx->raycast, j, i, cub->data->ceiling);
+			else
+				ft_put_pixel_on_img(cub->mlx->raycast, j, i, cub->data->floor);
+			j++;
+		}
+		i++;
+	}
+}
+
 void	raycast(t_cub *cub)
 {
 	int x = 0;
 
-	while (x < WIDTH)
+	set_background(cub);
+	while (x < HALFWIDTH)
 	{	
-		cub->ray->camera_x = 2 * x / (double)WIDTH - 1;
+		cub->ray->camera_x = 2 * x / (double)HALFWIDTH - 1;
 		// printf("%lf + %lf * %lf\n", cub->ray->dir_x, cub->ray->plan_x, cub->ray->camera_x);
 		cub->ray->ray_x = cub->ray->dir_x + cub->ray->plan_x * cub->ray->camera_x;
 		cub->ray->ray_y = cub->ray->dir_y + cub->ray->plan_y * cub->ray->camera_x;
@@ -78,25 +100,17 @@ void	raycast(t_cub *cub)
 		else
 			cub->ray->wall_dist = cub->ray->side_dist_y - cub->ray->delta_y;
 
-		cub->ray->line_height = HEIGHT / cub->ray->wall_dist;
-		// int	y = (HEIGHT - cub->ray->line_height) / 2;
-		// int of = (HEIGHT - cub->ray->line_height) / 2;
+		cub->ray->line_height = (int)(HEIGHT / cub->ray->wall_dist);
 
-		// while (y < cub->ray->line_height + of)
-		// {
-		// 	ft_put_pixel_on_img(cub->mlx, x, y, 0x00FF0000);
-		// 	y++;
-		// }
-		int	start[2];
-		int	end[2];
+		cub->ray->start = (HEIGHT - cub->ray->line_height) / 2;
+		if (cub->ray->start < 0)
+			cub->ray->start = 0;
+		cub->ray->end = cub->ray->line_height + cub->ray->start;
+		if (cub->ray->end >= HEIGHT)
+		 	cub->ray->end = HEIGHT - 1;
 
-		start[0] = x;
-		start[1] = (HEIGHT - cub->ray->line_height) / 2;
-		end[0] = x;
-		end[1] = cub->ray->line_height + start[1];
-		// printf("(%d, %d) - (%d, %d)\n", start[0], start[1], end[0], end[1]);
-		ft_put_line(cub, start, end, 0x00FF00F0);
-		
+		decide_wall(cub);
+		draw_texture(cub, x);
 		
 		x++;
 	}

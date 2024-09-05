@@ -62,6 +62,8 @@ SRC = main.c \
 		debug/key_detector.c \
 		raycasting/raycast.c \
 		raycasting/handle_player.c \
+		raycasting/draw_texture.c \
+		raycasting/map.c \
 
 
 SRCS = $(addprefix $(SRCS_DIR)/, $(SRC))

@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:38:35 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/29 13:48:53 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 10:55:32 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,18 @@
 
 static void	free_mlx_struct(t_mlx *mlx)
 {
-	if (mlx->img_ptr)
-		mlx_destroy_image(mlx->mlx, mlx->img_ptr);
+	if (mlx->map)
+	{
+		if (mlx->map->ptr)
+			mlx_destroy_image(mlx->mlx, mlx->map->ptr);
+		free(mlx->map);
+	}
+	if (mlx->raycast)
+	{
+		if (mlx->raycast->ptr)
+			mlx_destroy_image(mlx->mlx, mlx->raycast->ptr);
+		free(mlx->raycast);
+	}
 	if (mlx->win)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	free(mlx);

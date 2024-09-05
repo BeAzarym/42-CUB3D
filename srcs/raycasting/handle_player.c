@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 17:27:36 by bschor            #+#    #+#             */
-/*   Updated: 2024/08/29 14:43:27 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 12:30:39 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,34 @@ void	turn_player(t_cub *cub)
 	}
 }
 
-void	move_player(t_cub *cub)
+void	move_x_axe(t_cub *cub, int x)
 {
-	if (cub->key->forward == TRUE)
+	int	new_x;
+	int	new_y;
+
+	new_x = (int)(cub->ray->p_x - (MOVE_SPEED * x) * cub->ray->dir_x) ;
+	new_y = (int)(cub->ray->p_y - (MOVE_SPEED * x) * cub->ray->dir_y);
+	if (is_valid_pos(new_x + 0.02, new_y + 0.02, cub) == TRUE
+		&& (is_valid_pos(new_x + 0.02, cub->ray->p_y, cub) == TRUE
+			|| is_valid_pos(cub->ray->p_x, new_y + 0.02, cub) == TRUE))
 	{
-		if (cub->map[(int)cub->ray->p_y][(int)(cub->ray->p_x + cub->ray->dir_x * MOVE_SPEED)] != '1')
-			cub->ray->p_x += cub->ray->dir_x * MOVE_SPEED;
-		if (cub->map[(int)(cub->ray->p_y + cub->ray->dir_y * MOVE_SPEED)][(int)(cub->ray->p_x)] == FLOOR)
-			cub->ray->p_y += cub->ray->dir_y * MOVE_SPEED;
+		cub->ray->p_x -= (MOVE_SPEED * x) * cub->ray->dir_x;
+		cub->ray->p_y -= (MOVE_SPEED * x) * cub->ray->dir_y;
 	}
-	if (cub->key->back == TRUE)
+}
+
+ void	move_y_axe(t_cub *cub, int x)
+{
+	int	new_x;
+	int	new_y;
+
+	new_x = (int)(cub->ray->p_x - (MOVE_SPEED * x) * cub->ray->dir_y);
+	new_y = (int)(cub->ray->p_y + (MOVE_SPEED * x) * cub->ray->dir_x);
+	if (is_valid_pos(new_x + 0.02, new_y + 0.02, cub) == TRUE
+		&& (is_valid_pos(new_x + 0.02, cub->ray->p_y, cub) == TRUE
+			|| is_valid_pos(cub->ray->p_x, new_y + 0.02, cub) == TRUE))
 	{
-		if (cub->map[(int)cub->ray->p_y][(int)(cub->ray->p_x - cub->ray->dir_x * MOVE_SPEED)] == FLOOR)
-			cub->ray->p_x -= cub->ray->dir_x * MOVE_SPEED;
-		if (cub->map[(int)(cub->ray->p_y - cub->ray->dir_y * MOVE_SPEED)][(int)(cub->ray->p_x)] == FLOOR)
-			cub->ray->p_y -= cub->ray->dir_y * MOVE_SPEED;
+		cub->ray->p_x -= (MOVE_SPEED * x) * cub->ray->dir_y;
+		cub->ray->p_y += (MOVE_SPEED * x) * cub->ray->dir_x;
 	}
 }
