@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keys_struct_initialization.c                       :+:      :+:    :+:   */
+/*   initialization_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 15:24:53 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 14:21:07 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/05 15:35:56 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ t_keys	*init_keys(t_keys *keys)
 	keys->left = FALSE;
 	keys->rotate_right = FALSE;
 	keys->rotate_left = FALSE;
+	keys->big_map = FALSE;
+	keys->map = FALSE;
 	return (keys);
 }
 

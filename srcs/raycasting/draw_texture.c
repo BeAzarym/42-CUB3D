@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:54:13 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/05 14:44:12 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 15:32:38 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,16 @@ void	draw_texture(t_cub *cub, int x)
 	int	p1[2];
 
 	p0[0] = cub->map->blocksize * (cub->ray->p_x) + cub->map->offset;
-	p0[1] = cub->map->blocksize * (cub->ray->p_y) + cub->map->offset;
+	p0[1] = cub->map->blocksize * (cub->ray->p_y) + cub->map->offset2;
 	if (cub->ray->side == 0)
 	{
 		p1[0] = cub->map->blocksize * (cub->ray->p_x + cub->ray->wall_dist * cub->ray->ray_x) + cub->map->offset;
-		p1[1] = cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + cub->map->offset;
+		p1[1] = cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + cub->map->offset2;
 	}
 	else
 	{
 		p1[0] = cub->map->blocksize * (cub->ray->p_x + cub->ray->wall_dist * cub->ray->ray_x) + cub->map->offset;
-		p1[1] =  cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + cub->map->offset;
+		p1[1] =  cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist * cub->ray->ray_y) + cub->map->offset2;
 	}
 	ft_put_line(cub->mlx->map, p0, p1, 0x90FF0000);
 	

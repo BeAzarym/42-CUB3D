@@ -26,7 +26,7 @@ SRC = main.c \
 		parsing/arg_parser.c \
 		parsing/extension_parser.c \
 		parsing/structure_initialization.c \
-		parsing/keys_struct_initialization.c \
+		parsing/initialization_utils.c \
 		parsing/parser.c \
 		parsing/parse_data.c \
 		parsing/parse_colors.c \

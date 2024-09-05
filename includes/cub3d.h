@@ -6,7 +6,7 @@
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 14:52:19 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/05 15:28:05 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ typedef struct s_map
 	int			height;
 	int			blocksize;
 	int			offset;
+	int			offset2;
 } t_map;
 
 typedef struct s_raycasting
