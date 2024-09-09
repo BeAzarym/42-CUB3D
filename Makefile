@@ -1,101 +1,166 @@
-.SILENT:
-
-NAME = cub3d
-
-RM = rm -rf
-CC = gcc
-CFLAGS = -Wall -Werror -Wextra -O3 -ffast-math -fsanitize=address -g
-
-SRCS_DIR = srcs
-INC_DIR = includes
-
+# OS detection
 OS = $(shell uname)
 ifeq ($(OS), Linux)
-	OSDIR := minilibx/minilinux
-	LINKS := -lX11 -lXext
+    MLX_DIR = minilibx/minilinux
+    LINKS = -lX11 -lXext
 else
-	OSDIR := minilibx/minimac
-	LINKS := -framework OpenGL -framework AppKit
+    MLX_DIR = minilibx/minimac
+    LINKS = -framework OpenGL -framework AppKit
 endif
-MLX_DIR = $(OSDIR)
+MLX_LINK = $(MLX_DIR)/libmlx.a $(LINKS)
 
-INC = cub3d.h
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
 
-SRC = main.c \
-		hooks/handle_keys.c \
-		parsing/arg_parser.c \
-		parsing/extension_parser.c \
-		parsing/structure_initialization.c \
-		parsing/initialization_utils.c \
-		parsing/parser.c \
-		parsing/parse_data.c \
-		parsing/parse_colors.c \
-		parsing/parse_map.c \
-		parsing/parse_player.c \
-		parsing/fill_assets.c \
-		utils/ft_access.c \
-		utils/ft_array_clear.c \
-		utils/ft_array_add_back.c \
-		utils/ft_array_print.c \
-		utils/ft_arraylen.c \
-		utils/ft_atoi.c \
-		utils/ft_bzero.c \
-		utils/ft_error.c \
-		utils/ft_calloc.c \
-		utils/ft_memset.c \
-		utils/ft_putstr_fd.c \
-		utils/ft_split.c \
-		utils/ft_strchr.c \
-		utils/ft_strrchr.c \
-		utils/ft_strdup.c \
-		utils/ft_strlcpy.c \
-		utils/ft_strlen.c \
-		utils/get_next_line.c \
-		utils/ft_substr.c \
-		utils/ft_put_pixel_on_img.c \
-		utils/ft_strncmp.c \
-		utils/is_valid_charset.c \
-		utils/ft_isdigit.c \
-		utils/is_valid_pos.c \
-		utils/bresenham.c \
-		debug/debug_file_input.c \
-		debug/key_detector.c \
-		raycasting/raycast.c \
-		raycasting/handle_player.c \
-		raycasting/draw_texture.c \
-		raycasting/map.c \
-		raycasting/compute_dda.c \
-		raycasting/wall_dist.c \
+# Variables
+NAME = cub3d
+SRC_DIR = srcs/
+SUB_DIRS = raycasting/ utils/ parsing/ hooks/ debug/
+OBJ_DIR = obj/
+INCLUDE = includes/cub3d.h
+
+BNS_NAME = cub3d_bonus
+BNS_SRC_DIR = bns_srcs/
+BNS_OBJ_DIR = bns_obj/
+BNS_INCLUDE = includes/cub3d_bonus.h
+
+# Source files
+SRC = arg_parser.c \
+	  main.c \
+      handle_keys.c \
+      extension_parser.c \
+      structure_initialization.c \
+      initialization_utils.c \
+      parser.c \
+      parse_data.c \
+      parse_colors.c \
+      parse_map.c \
+      parse_player.c \
+      fill_assets.c \
+      ft_access.c \
+      ft_array_clear.c \
+      ft_array_add_back.c \
+      ft_array_print.c \
+      ft_arraylen.c \
+      ft_atoi.c \
+      ft_bzero.c \
+      ft_error.c \
+      ft_calloc.c \
+      ft_memset.c \
+      ft_putstr_fd.c \
+      ft_split.c \
+      ft_strchr.c \
+      ft_strrchr.c \
+      ft_strdup.c \
+      ft_strlcpy.c \
+      ft_strlen.c \
+      get_next_line.c \
+      ft_substr.c \
+      ft_put_pixel_on_img.c \
+      ft_strncmp.c \
+      is_valid_charset.c \
+      ft_isdigit.c \
+      is_valid_pos.c \
+      debug_file_input.c \
+      key_detector.c \
+      raycast.c \
+      handle_player.c \
+      draw_texture.c \
+      compute_dda.c \
+      wall_dist.c
+
+BNS_SRC = main_bonus.c \
+	handle_keys_bonus.c \
+	arg_parser.c \
+	extension_parser.c \
+	structure_initialization_bonus.c \
+	initialization_utils_bonus.c \
+	parser.c \
+	parse_data.c \
+	parse_colors.c \
+	parse_map.c \
+	parse_player.c \
+	fill_assets.c \
+	bresenham_bonus.c \
+	ft_access.c \
+	ft_array_clear.c \
+	ft_array_add_back.c \
+	ft_array_print.c \
+	ft_arraylen.c \
+	ft_atoi.c \
+	ft_bzero.c \
+	ft_error.c \
+	ft_calloc.c \
+	ft_memset.c \
+	ft_putstr_fd.c \
+	ft_split.c \
+	ft_strchr.c \
+	ft_strrchr.c \
+	ft_strdup.c \
+	ft_strlcpy.c \
+	ft_strlen.c \
+	get_next_line.c \
+	ft_substr.c \
+	ft_put_pixel_on_img.c \
+	ft_strncmp.c \
+	is_valid_charset.c \
+	ft_isdigit.c \
+	is_valid_pos.c \
+	debug_file_input.c \
+	key_detector.c \
+	raycast.c \
+	handle_player.c \
+	draw_texture_bonus.c \
+	map_bonus.c \
+	compute_dda.c \
+	wall_dist.c
 
 
-SRCS = $(addprefix $(SRCS_DIR)/, $(SRC))
-OBJS = $(addsuffix .o, $(basename $(SRCS)))
+# Object files corresponding to source files
+OBJ = $(addprefix $(OBJ_DIR),$(SRC:.c=.o))
 
-INCS_DIR = $(addsuffix /, $(INC_DIR))
-INCS = $(addprefix -I , $(INCS_DIR))
+BNS_OBJ = $(addprefix $(BNS_OBJ_DIR),$(BNS_SRC:.c=.o))
 
-MLX_INC = -I $(MLX_DIR)
-MLX_LIB = $(addprefix $(MLX_DIR)/,libmlx.a)
-MLX_LINK = -L $(MLX_DIR) -l mlx $(LINKS)
+# vpath setup to find source files
+vpath %.c $(SRC_DIR) $(BNS_SRC_DIR) $(foreach subfolder, $(SUB_DIRS), $(SRC_DIR)$(subfolder)) $(foreach subfolder, $(SUB_DIRS), $(BNS_SRC_DIR)$(subfolder))
 
-all : $(NAME) $(MLXLIB)
+# Rules
+all: $(NAME)
 
-$(NAME) : mlx $(OBJS)
-	$(CC) $(OBJS) $(MLX_LINK) -lm -o $(NAME) $(CFLAGS)
+bonus: $(BNS_NAME)
 
-mlx :
-	@make -C $(MLX_DIR)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-clean :
-	$(RM) $(OBJS)
-	make -C $(MLX_DIR) clean
+$(BNS_OBJ_DIR):
+	mkdir -p $(BNS_OBJ_DIR)
 
-re : fclean all
+$(NAME): $(OBJ_DIR) $(OBJ) $(MLX_DIR)/libmlx.a
+	$(CC) $(CFLAGS) -I $(INCLUDE) $(OBJ) $(MLX_LINK) -o $(NAME)
 
-fclean : clean
-	$(RM) $(NAME)
+$(BNS_NAME): $(BNS_OBJ_DIR) $(BNS_OBJ) $(MLX_DIR)/libmlx.a
+	$(CC) $(CFLAGS) -I $(BNS_INCLUDE) $(BNS_OBJ) $(MLX_LINK) -o $(BNS_NAME)
 
-%.o: $(SRCS_DIR)/%.c
-	$(CC) -c -o $@ $< $(MLX_INC) $(INCS) $(CFLAGS)
+$(MLX_DIR)/libmlx.a:
+	make -C $(MLX_DIR)
 
-.PHONY: NAME re all fclean clean
+# Rule for compiling object files
+$(OBJ_DIR)%.o: %.c
+	$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $@
+
+$(BNS_OBJ_DIR)%.o: %.c
+	$(CC) $(CFLAGS) -I $(BNS_INCLUDE) -c $< -o $@
+
+# Cleanup rules
+clean:
+	make clean -C $(MLX_DIR)
+	rm -rf $(OBJ_DIR)
+	rm -rf $(BNS_OBJ_DIR)
+
+fclean: clean
+	rm -f $(NAME)
+	rm -f $(BNS_NAME)
+
+re: fclean all
+
+.PHONY: all clean fclean re

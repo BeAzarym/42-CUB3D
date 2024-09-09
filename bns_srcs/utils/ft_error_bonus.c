@@ -1,19 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_error_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:38:35 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/06 15:44:39 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/06 15:44:19 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 static void	free_mlx_struct(t_mlx *mlx)
 {
+	if (mlx->map)
+	{
+		if (mlx->map->ptr)
+			mlx_destroy_image(mlx->mlx, mlx->map->ptr);
+		free(mlx->map);
+	}
 	if (mlx->raycast)
 	{
 		if (mlx->raycast->ptr)

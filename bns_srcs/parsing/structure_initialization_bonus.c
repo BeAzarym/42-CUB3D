@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structure_initialization.c                         :+:      :+:    :+:   */
+/*   structure_initialization_bonus.c                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 21:15:42 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/06 15:40:38 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/06 15:40:17 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 static t_raycast	*init_raycast(t_raycast *ray);
 static t_mlx		*init_mlx(t_mlx *mlx);
@@ -81,6 +81,9 @@ static t_mlx	*init_mlx(t_mlx *mlx)
 	mlx->win = NULL;
 	mlx->raycast = ft_calloc(sizeof(t_img), 1);
 	if (!mlx->raycast)
+		return (NULL);
+	mlx->map = ft_calloc(sizeof(t_img), 1);
+	if (!mlx->map)
 		return (NULL);
 	return (mlx);
 }
