@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/08 10:58:50 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/10 10:19:05 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB3D_BONUS_H
+# define CUB3D_BONUS_H
 
 # include "../minilibx/minilinux/mlx.h"
 # include "../minilibx/minimac/mlx.h"
@@ -33,7 +33,7 @@
 # define ERR_MISSING_MAP "Error\nMissing map\n"
 # define ERR_MISSING_DATA "Error\nMissing data\n"
 # define ERR_MULTIPLE_PLAYER "Error\nMultiple players in map\n"
-# define ERR_MISSING_PLAYER "Error\nPlayer is missing"
+# define ERR_MISSING_PLAYER "Error\nPlayer is missing\n"
 # define ERR_INVALID_COUNT_ARG "Error\nInvalid count of argument\n"
 # define ERR_INVALID_MAP_EXTENSION "Error\nInvalid map extension\n"
 # define ERR_ACCESS_MAP "Error\nCan't access to the map file\n"
