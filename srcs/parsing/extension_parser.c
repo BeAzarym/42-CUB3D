@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   extension_parser.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 20:08:45 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/08/06 20:58:00 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:07:42 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	extension_parser(char *path, char *extension)
 			return (FAIL);
 	}
 	str = ft_strrchr(path, '.');
+	if (!str)
+		return (FAIL);
 	return (ft_strncmp(str, extension, ft_strlen(extension)));
 }
