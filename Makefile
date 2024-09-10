@@ -1,3 +1,5 @@
+.SILENT:
+
 # OS detection
 OS = $(shell uname)
 ifeq ($(OS), Linux)
@@ -10,7 +12,7 @@ endif
 MLX_LINK = $(MLX_DIR)/libmlx.a $(LINKS)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
 
 # Variables
 NAME = cub3d
