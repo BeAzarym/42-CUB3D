@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 20:25:56 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/10 10:04:25 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ linux compile
 # define ERR_MISSING_MAP "Error\nMissing map\n"
 # define ERR_MISSING_DATA "Error\nMissing data\n"
 # define ERR_MULTIPLE_PLAYER "Error\nMultiple players in map\n"
-# define ERR_MISSING_PLAYER "Error\nPlayer is missing"
+# define ERR_MISSING_PLAYER "Error\nPlayer is missing\n"
 # define ERR_INVALID_COUNT_ARG "Error\nInvalid count of argument\n"
 # define ERR_INVALID_MAP_EXTENSION "Error\nInvalid map extension\n"
 # define ERR_ACCESS_MAP "Error\nCan't access to the map file\n"
