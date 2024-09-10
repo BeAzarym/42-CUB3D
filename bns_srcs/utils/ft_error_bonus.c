@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:38:35 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/06 15:44:19 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/10 09:51:10 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	clean_exit(t_cub *cub, int return_value)
 			ft_array_clear(cub->map->grid);
 			free(cub->map);
 		}
+		free(cub->key);
 		close(cub->infile_fd);
 		free(cub);
 	}
