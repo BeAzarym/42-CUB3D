@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:54:13 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/09 21:14:56 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/12 13:27:41 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,16 @@ void	draw_texture(t_cub *cub, int x)
 
 void	decide_wall(t_cub *cub)
 {
-	if (cub->ray->side == 0)
+	if (cub->ray->side == 1)
 	{
-		if (cub->ray->ray_x > 0)
+		if (cub->ray->ray_y > 0)
 			cub->ray->texture_num = NO;
 		else
 			cub->ray->texture_num = SO;
 	}
 	else
 	{
-		if (cub->ray->ray_y > 0)
+		if (cub->ray->ray_x > 0)
 			cub->ray->texture_num = EA;
 		else
 			cub->ray->texture_num = WE;

@@ -6,7 +6,7 @@
 /*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/10 10:19:05 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:26:08 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@
 # define ERR_FAIL_TO_FILL_ASSETS "Error\nFailled to fill assets\n"
 # define ERR_FAIL_TO_FILL_COLORS "Error\nFailled to fill colors\n"
 # define ERR_ACCESS_NORTH "Error\nCan't access to north assests file\n"
-# define ERR_ACCESS_SOUTH "Error\nCan't access to north assests file\n"
-# define ERR_ACCESS_EAST "Error\nCan't access to north assests file\n"
-# define ERR_ACCESS_WEST "Error\nCan't access to north assests file\n"
+# define ERR_ACCESS_SOUTH "Error\nCan't access to south assests file\n"
+# define ERR_ACCESS_EAST "Error\nCan't access to east assests file\n"
+# define ERR_ACCESS_WEST "Error\nCan't access to west assests file\n"
 # define ERR_DUPLICATE_NORTH "Error\nDuplicated NORTH path\n"
 # define ERR_DUPLICATE_SOUTH "Error\nDuplicated SOUTH path\n"
 # define ERR_DUPLICATE_EAST "Error\nDuplicated EAST path\n"
