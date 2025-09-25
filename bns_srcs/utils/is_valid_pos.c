@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extension_parser.c                                 :+:      :+:    :+:   */
+/*   is_valid_pos.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 20:08:45 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/10 10:07:42 by cchabeau         ###   ########.fr       */
+/*   Created: 2024/08/20 13:07:38 by cchabeau          #+#    #+#             */
+/*   Updated: 2024/09/05 14:30:10 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	extension_parser(char *path, char *extension)
+int	is_valid_pos(int x, int y, t_cub *cub)
 {
-	char	*str;
-
-	if (!path || !path[0] || !extension || !extension[0])
-		return (FAIL);
-	if (ft_strlen(path) == ft_strlen(extension))
-		return (FAIL);
-	str = ft_strrchr(path, '/');
-	if (str)
-	{
-		if (ft_strlen(++str) <= ft_strlen(extension))
-			return (FAIL);
-	}
-	str = ft_strrchr(path, '.');
-	if (!str)
-		return (FAIL);
-	return (ft_strncmp(str, extension, ft_strlen(extension)));
+	if (x < 0 || y < 0 || x >= cub->map->width || y >= cub->map->height)
+		return (FALSE);
+	if (is_valid_charset(cub->map->grid[y][x], "0NSEW") == TRUE)
+		return (TRUE);
+	return (FALSE);
 }

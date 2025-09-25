@@ -1,16 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_texture.c                                     :+:      :+:    :+:   */
+/*   draw_texture_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 14:54:13 by bschor            #+#    #+#             */
-/*   Updated: 2024/09/12 13:26:29 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:27:41 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
+
+void	draw_ray(t_cub *cub)
+{
+	int	p0[2];
+	int	p1[2];
+
+	p0[0] = cub->map->blocksize * (cub->ray->p_x) + cub->map->offset;
+	p0[1] = cub->map->blocksize * (cub->ray->p_y) + cub->map->offset2;
+	if (cub->ray->side == 0)
+	{
+		p1[0] = cub->map->blocksize * (cub->ray->p_x + cub->ray->wall_dist
+				* cub->ray->ray_x) + cub->map->offset;
+		p1[1] = cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist
+				* cub->ray->ray_y) + cub->map->offset2;
+	}
+	else
+	{
+		p1[0] = cub->map->blocksize * (cub->ray->p_x + cub->ray->wall_dist
+				* cub->ray->ray_x) + cub->map->offset;
+		p1[1] = cub->map->blocksize * (cub->ray->p_y + cub->ray->wall_dist
+				* cub->ray->ray_y) + cub->map->offset2;
+	}
+	ft_put_line(cub->mlx->map, p0, p1, 0x90FF0000);
+}
 
 void	init_texture_values(t_cub *cub)
 {
@@ -53,6 +77,7 @@ void	draw_texture(t_cub *cub, int x)
 		ft_put_pixel_on_img(cub->mlx->raycast, x, y, color);
 		y++;
 	}
+	draw_ray(cub);
 }
 
 void	decide_wall(t_cub *cub)

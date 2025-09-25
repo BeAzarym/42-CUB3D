@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extension_parser.c                                 :+:      :+:    :+:   */
+/*   compute_dda.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/06 20:08:45 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/10 10:07:42 by cchabeau         ###   ########.fr       */
+/*   Created: 2024/09/05 13:47:26 by cchabeau          #+#    #+#             */
+/*   Updated: 2024/09/05 14:38:29 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	extension_parser(char *path, char *extension)
+void	compute_dda(t_cub *cub)
 {
-	char	*str;
-
-	if (!path || !path[0] || !extension || !extension[0])
-		return (FAIL);
-	if (ft_strlen(path) == ft_strlen(extension))
-		return (FAIL);
-	str = ft_strrchr(path, '/');
-	if (str)
+	while (cub->ray->hit == 0)
 	{
-		if (ft_strlen(++str) <= ft_strlen(extension))
-			return (FAIL);
+		if (cub->ray->side_dist_x < cub->ray->side_dist_y)
+		{
+			cub->ray->side_dist_x += cub->ray->delta_x;
+			cub->ray->map_x += cub->ray->step_x;
+			cub->ray->side = 0;
+		}
+		else
+		{
+			cub->ray->side_dist_y += cub->ray->delta_y;
+			cub->ray->map_y += cub->ray->step_y;
+			cub->ray->side = 1;
+		}
+		if (cub->map->grid[cub->ray->map_y][cub->ray->map_x] == WALL)
+			cub->ray->hit = 1;
 	}
-	str = ft_strrchr(path, '.');
-	if (!str)
-		return (FAIL);
-	return (ft_strncmp(str, extension, ft_strlen(extension)));
 }

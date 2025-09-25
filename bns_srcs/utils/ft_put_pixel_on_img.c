@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialization_utils.c                             :+:      :+:    :+:   */
+/*   ft_put_pixel_on_img.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/27 15:24:53 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/06 15:38:40 by bschor           ###   ########.fr       */
+/*   Created: 2024/08/27 14:02:49 by cchabeau          #+#    #+#             */
+/*   Updated: 2024/09/05 14:51:40 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-t_keys	*init_keys(t_keys *keys)
+void	ft_put_pixel_on_img(t_img *img, int x, int y, int color)
 {
-	keys = malloc(sizeof(t_keys));
-	if (!keys)
-		return (NULL);
-	keys->forward = FALSE;
-	keys->back = FALSE;
-	keys->right = FALSE;
-	keys->left = FALSE;
-	keys->rotate_right = FALSE;
-	keys->rotate_left = FALSE;
-	return (keys);
-}
+	int	*dst;
 
-t_map	*init_map(t_map *map)
-{
-	map = malloc(sizeof(t_map));
-	if (!map)
-		return (NULL);
-	map->grid = NULL;
-	map->width = 0;
-	map->height = 0;
-	return (map);
+	if (x < 0 || y < 0 || x > WIDTH - 1 || y > HEIGHT - 1)
+		return ;
+	dst = (int *)(img->addr + (y * img->size_line + x * (img->bpp / 8)));
+	*dst = color;
 }

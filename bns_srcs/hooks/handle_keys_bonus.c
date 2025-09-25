@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_keys.c                                      :+:      :+:    :+:   */
+/*   handle_keys_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 23:55:46 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/06 15:37:03 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/06 15:37:29 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	key_press(int key_code, t_cub *cub)
 {
@@ -28,6 +28,12 @@ int	key_press(int key_code, t_cub *cub)
 		cub->key->rotate_left = TRUE;
 	if (key_code == RIGHT_ARROW)
 		cub->key->rotate_right = TRUE;
+	if (key_code == UP)
+		cub->key->map = TRUE;
+	if (key_code == DOWN)
+		cub->key->map = FALSE;
+	if (key_code == M)
+		cub->key->big_map = TRUE;
 	return (0);
 }
 
@@ -45,6 +51,8 @@ int	key_release(int key_code, t_cub *cub)
 		cub->key->rotate_left = FALSE;
 	if (key_code == RIGHT_ARROW)
 		cub->key->rotate_right = FALSE;
+	if (key_code == M)
+		cub->key->big_map = FALSE;
 	return (0);
 }
 

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschor <bschor@student.s19.be>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 18:54:23 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/09 21:12:42 by bschor           ###   ########.fr       */
+/*   Updated: 2024/09/09 21:13:49 by bschor           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/cub3d_bonus.h"
 
 static void	handle_move(t_cub *cub)
 {
@@ -33,6 +33,11 @@ static int	init_game(t_cub *cub, t_mlx *mlx)
 	cub->mlx->raycast->addr = mlx_get_data_addr(mlx->raycast->ptr,
 			&mlx->raycast->bpp, &mlx->raycast->size_line,
 			&mlx->raycast->endian);
+	cub->mlx->map->ptr = mlx_new_image(mlx->mlx, WIDTH, HEIGHT);
+	if (!cub->mlx->map->ptr)
+		return (ft_error(ERR_FAIL_TO_CREATE_IMG, FAIL));
+	cub->mlx->map->addr = mlx_get_data_addr(mlx->map->ptr,
+			&mlx->map->bpp, &mlx->map->size_line, &mlx->map->endian);
 	return (SUCCESS);
 }
 
@@ -42,11 +47,17 @@ int	render(t_cub *cub)
 		clean_exit(cub, FAIL);
 	set_background(cub);
 	handle_move(cub);
+	draw_map(cub);
 	raycast(cub);
 	mlx_put_image_to_window(cub->mlx->mlx, cub->mlx->win,
 		cub->mlx->raycast->ptr, 0, 0);
 	mlx_destroy_image(cub->mlx->mlx, cub->mlx->raycast->ptr);
+	if (cub->key->map == TRUE)
+		mlx_put_image_to_window(cub->mlx->mlx, cub->mlx->win,
+			cub->mlx->map->ptr, 0, 0);
+	mlx_destroy_image(cub->mlx->mlx, cub->mlx->map->ptr);
 	cub->mlx->raycast->ptr = NULL;
+	cub->mlx->map->ptr = NULL;
 	return (0);
 }
 

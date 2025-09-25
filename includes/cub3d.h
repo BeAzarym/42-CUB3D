@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cchabeau <cchabeau@student.s19.be>         +#+  +:+       +#+        */
+/*   By: cchabeau <cchabeau@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/06 19:00:21 by cchabeau          #+#    #+#             */
-/*   Updated: 2024/09/05 20:25:17 by cchabeau         ###   ########.fr       */
+/*   Updated: 2024/09/12 13:25:51 by cchabeau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 # include "unistd.h"
 # include "fcntl.h"
 # include "math.h"
-
+/*
+linux compile
 # include <X11/X.h>
 # include <X11/keysym.h>
-
+*/
 
 # define ERR_MALLOC_FAILLED "Error\nMalloc failled\n"
 # define ERR_OPEN_FAILLED "Error\nFailled to open the map\n"
@@ -32,7 +33,7 @@
 # define ERR_MISSING_MAP "Error\nMissing map\n"
 # define ERR_MISSING_DATA "Error\nMissing data\n"
 # define ERR_MULTIPLE_PLAYER "Error\nMultiple players in map\n"
-# define ERR_MISSING_PLAYER "Error\nPlayer is missing"
+# define ERR_MISSING_PLAYER "Error\nPlayer is missing\n"
 # define ERR_INVALID_COUNT_ARG "Error\nInvalid count of argument\n"
 # define ERR_INVALID_MAP_EXTENSION "Error\nInvalid map extension\n"
 # define ERR_ACCESS_MAP "Error\nCan't access to the map file\n"
@@ -42,9 +43,9 @@
 # define ERR_FAIL_TO_FILL_ASSETS "Error\nFailled to fill assets\n"
 # define ERR_FAIL_TO_FILL_COLORS "Error\nFailled to fill colors\n"
 # define ERR_ACCESS_NORTH "Error\nCan't access to north assests file\n"
-# define ERR_ACCESS_SOUTH "Error\nCan't access to north assests file\n"
-# define ERR_ACCESS_EAST "Error\nCan't access to north assests file\n"
-# define ERR_ACCESS_WEST "Error\nCan't access to north assests file\n"
+# define ERR_ACCESS_SOUTH "Error\nCan't access to south assests file\n"
+# define ERR_ACCESS_EAST "Error\nCan't access to east assests file\n"
+# define ERR_ACCESS_WEST "Error\nCan't access to west assests file\n"
 # define ERR_DUPLICATE_NORTH "Error\nDuplicated NORTH path\n"
 # define ERR_DUPLICATE_SOUTH "Error\nDuplicated SOUTH path\n"
 # define ERR_DUPLICATE_EAST "Error\nDuplicated EAST path\n"
@@ -75,10 +76,6 @@
 # define EA 2
 # define WE 3
 
-# define XBLU 0x90007EFF
-# define XWHIT 0x90FFFFFF
-# define XPINK 0x90ECC8E5
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
@@ -89,14 +86,6 @@
 
 # ifndef HEIGHT
 #  define HEIGHT 720
-# endif
-
-# ifndef MAPWIDTH
-#  define MAPWIDTH 640
-# endif
-
-# ifndef MAPHEIGHT
-#  define MAPHEIGHT 360
 # endif
 
 # ifndef MOVE_SPEED
@@ -128,9 +117,6 @@
 #  define D 2
 #  define Z 6
 #  define Q 12
-#  define M 46
-#  define UP 126
-#  define DOWN 125
 #  define LEFT_ARROW 123
 #  define RIGHT_ARROW 124
 # endif
@@ -173,9 +159,6 @@ typedef struct s_map
 	char		**grid;
 	int			width;
 	int			height;
-	int			blocksize;
-	int			offset;
-	int			offset2;
 }	t_map;
 
 typedef struct s_raycasting
@@ -216,7 +199,6 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 	t_img	*raycast;
-	t_img	*map;
 }	t_mlx;
 
 typedef struct s_keys
@@ -227,8 +209,6 @@ typedef struct s_keys
 	int			right;
 	int			rotate_left;
 	int			rotate_right;
-	int			map;
-	int			big_map;
 }	t_keys;
 
 typedef struct s_cub
@@ -251,7 +231,6 @@ void	move_player(t_cub *cub);
 void	turn_player(t_cub *cub, t_raycast *ray);
 void	draw_texture(t_cub *cub, int x);
 void	decide_wall(t_cub *cub);
-void	draw_map(t_cub *cub);
 void	move_x_axe(t_cub *cub, int x);
 void	move_y_axe(t_cub *cub, int x);
 void	set_background(t_cub *cub);
@@ -320,5 +299,4 @@ int		is_valid_charset(char c, char *charset);
 int		is_only_digit(char *s);
 int		ft_isdigit(int c);
 int		is_valid_pos(int x, int y, t_cub *cub);
-void	ft_put_line(t_img *img, int p0[2], int p1[2], int color);
 #endif
