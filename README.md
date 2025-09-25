@@ -23,6 +23,8 @@ The engine renders a 3D maze from a 2D map perspective, creating an immersive fi
 ### Visual Features
 - **Floor and Ceiling Colors**: Customizable RGB colors
 - **Texture Mapping**: XPM texture support for wall rendering
+- **Interactive Minimap**: Real-time minimap with player position indicator
+- **Fullscreen Map View**: Toggle between small and fullscreen map modes
 - **Cross-Platform Compatibility**: Works on both Linux and macOS
 - **Optimized Rendering**: Fast math operations for smooth gameplay
 
@@ -67,6 +69,9 @@ make
 ### Controls
 - **W, A, S, D**: Move forward, left, backward, right
 - **Left/Right Arrow Keys**: Rotate camera left/right
+- **Up Arrow**: Show minimap
+- **Down Arrow**: Hide minimap
+- **M**: Toggle fullscreen map view (hold for fullscreen)
 - **ESC**: Exit the game
 - **Red X**: Close window
 
@@ -136,8 +141,33 @@ The engine uses the **DDA (Digital Differential Analyzer)** algorithm to cast ra
 - **Parser**: Validates and loads `.cub` map files
 - **Raycasting Engine**: Handles 3D projection mathematics  
 - **Texture System**: Manages XPM texture loading and mapping
+- **Minimap System**: Real-time 2D map overlay with player tracking
 - **Input System**: Processes keyboard events for movement
 - **Collision Detection**: Prevents invalid player movement
+
+## Minimap Feature
+
+The bonus version includes an interactive minimap system that enhances gameplay navigation:
+
+### Minimap Display
+- **Real-time Updates**: Shows current player position and orientation
+- **Color-coded Elements**:
+  - **Blue**: Walls and obstacles
+  - **White**: Walkable floor space  
+  - **Pink**: Player starting position
+  - **Purple**: Current player position with orientation indicator
+
+### Map Controls
+- **Up Arrow**: Toggle minimap visibility on/off
+- **M Key**: Hold to view fullscreen map overlay
+- **Dynamic Sizing**: Automatically scales based on map dimensions
+- **Corner Positioning**: Minimap positioned in screen corner for non-intrusive gameplay
+
+### Technical Implementation
+- Renders 2D grid representation of the 3D world
+- Real-time player position tracking with smooth updates
+- Efficient drawing system using square-based rendering
+- Responsive scaling for different map sizes
 
 ## Error Handling
 
